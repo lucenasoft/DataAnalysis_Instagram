@@ -24,7 +24,6 @@ def navegador(a):
     manager = ChromeDriverManager(path=path)
     driver = webdriver.Chrome(service=Service(manager.install()),chrome_options=chrome_options)
     verific(driver)
-    gerar_dados(driver)
 
 #Nesta função ocorre a verificação das contas. 
 def verific(driver):
@@ -37,12 +36,18 @@ def verific(driver):
             print('Perfil OK!')
         except:
             print('Perfil inválido')
+        gerar_dados(driver)
             
 
 def gerar_dados(driver):
     try:
-        inf_dados = driver.find_element(By.CLASS_NAME, '_aa_7').text
+        print('=-'*30)
+        ana_li = driver.find_element(By.CLASS_NAME,'x78zum5.x1q0g3np.xieb3on').text
+        print(ana_li)
+        print('=-'*30)
+        inf_dados = driver.find_element(By.CLASS_NAME, '_aa_c').text
         print(inf_dados)
+        print('=-'*30)
     except:
         print('Sem dados para ler')
 
