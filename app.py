@@ -16,7 +16,7 @@ for l in read_usernames:
     usernames.append(l.strip('\n'))
 
 #Aqui é definido as configurações do navegador.
-def navegador(a):
+def navegador():
     path = 'config/driver'
     chrome_options = Options()
     for x in range(0,len(argument['argumentos'])):
@@ -51,7 +51,7 @@ def gerar_dados(driver):
     except:
         print('Sem dados para ler')
 
-navegador(a=1)
+navegador()
 
 """ 
     OBS (NAVEGADOR INVISIVEL, PARA SABER SOMENTE OS STATUS E NÃO O QUE ESTÁ OCORRENDO).
