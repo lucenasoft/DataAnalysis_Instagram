@@ -27,37 +27,36 @@ def navegador():
 
 #Nesta função ocorre a verificação das contas. 
 def verific(driver):
-    global narnia1
     for x in range(len(usernames)):
         driver.get(f'https://www.instagram.com/{usernames[x]}')
         sleep(3)
+        print('=-'*15+'=')
+        print(f'Profile: {usernames[x]}')
         try:
             driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/header/section/ul/li[1]/button/div")
-            print('Perfil OK!')
+            print('Status: OK - 200')
         except:
-            print('Perfil inválido')
+            print('Status: Error - 404')
         gerar_dados(driver)
             
-
+#Aqui é gerado os dados a serem retornados.
 def gerar_dados(driver):
     try:
-        print('=-'*30)
+        print('=-'*15+'=')
         ana_li = driver.find_element(By.CLASS_NAME,'x78zum5.x1q0g3np.xieb3on').text
         print(ana_li)
-        print('=-'*30)
-        inf_dados = driver.find_element(By.CLASS_NAME, '_aa_c').text
-        print(inf_dados)
-        print('=-'*30)
+        print('=-'*15+'=')
+        inf_dados = driver.find_element(By.CLASS_NAME,'_aa_c').text
+        datas_inf_list = inf_dados.split('\n')
+        for x in range(len(datas_inf_list)):
+            if x == 0:
+                datas_result = f'{datas_inf_list[0]}'
+            elif x == 1:
+                print(f'Bio: {datas_inf_list[x]}')
+            else:
+                print(datas_inf_list[x])
+        print('=-'*15+'=')
     except:
         print('Sem dados para ler')
 
 navegador()
-
-""" 
-    OBS (NAVEGADOR INVISIVEL, PARA SABER SOMENTE OS STATUS E NÃO O QUE ESTÁ OCORRENDO).
-
-    1º PRECISO IMPLEMENTAR A MODELAGEM DOS DADOS, COMO ARMAZENAR OS USERNAMES COM O STATUS.
-    2º CRIAR INTERFACE COM TKINTER PARA RECEBER OS USERNAMES INVES DE SALVAR NO BLOCO DE NOTAS.
-    3º CRIAR UM DB PARA RECEBER OS DADOS GERADOS, COMO CONTAS E OS STATUS.
-
-"""
